@@ -10,7 +10,7 @@ export const routes: Routes = [
     },
     {
         path: "todos",
-        loadComponent: () => {
+        loadComponent: async () => {
             return import('./todos/todos').then((m) => m.TodosComponent)
         }
     }

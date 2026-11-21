@@ -6,7 +6,7 @@ import { Todo, TodoContent } from '../models/Todo.type';
   standalone: true
 })
 
-export class FilterTodosPipe implements PipeTransform {
+export class FilterTodosInputPipe implements PipeTransform {
   transform(todos: TodoContent[], searchTerm: string): TodoContent[] {
     if (!searchTerm) return todos;
     

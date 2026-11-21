@@ -4,10 +4,11 @@ import { TodoContent } from '../models/Todo.type';
 import { catchError } from 'rxjs';
 import { TodoItem } from '../components/todo-item/todo-item';
 import { FormsModule } from '@angular/forms';
-import { FilterTodosPipe } from '../pipes/filter-todos-pipe';
+import { FilterTodosInputPipe } from '../pipes/filter-todos-input-pipe';
+import { FilterCompletedTodosPipe } from '../pipes/filter-completed-todos-pipe';
 
 @Component({
-  imports: [TodoItem, FormsModule, FilterTodosPipe],
+  imports: [TodoItem, FormsModule, FilterTodosInputPipe, FilterCompletedTodosPipe],
   standalone: true,
   selector: 'app-todos',
   styleUrl: './todos.scss',
@@ -17,6 +18,7 @@ export class TodosComponent implements OnInit{
   todoService = inject(TodosService)  
   todoItems = signal<Array<TodoContent>>([])
   searchTerm = signal("");
+  completedTodo = signal(true);
 
   
 

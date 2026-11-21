@@ -10,10 +10,23 @@
            <input name="searchTerm" [(ngModel)]="searchTerm" type="text" placeholder="Search todos...">
        </form>
 
-       <ul class="todos">
-          @for (todo of todoItems() | filterTodos : searchTerm(); track todo.id) {
-           <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo"/>
-          }
-       </ul>
+       <section class="list-container">
+          <section>
+               <label for="">Not Done</label>
+               <ul class="todos">
+                  @for (todo of todoItems() | filterTodos : searchTerm() | filterCompletedTodos : false; track todo.id) {
+                   <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo"/>
+                  }
+               </ul>
+          </section>
+          <section>
+               <label>Done</label>
+               <ul class="finished-todos">
+                 @for (todo of todoItems() | filterCompletedTodos : completedTodo(); track todo.id) {
+                    <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo"/>
+                 }
+               </ul>
+          </section>
+        </section>
     </section>
 </section>
