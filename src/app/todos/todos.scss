@@ -24,6 +24,14 @@
     border: 1px solid #ddd;
     box-shadow: 1px 1px 1px #ddd;
 }
+.list-container {
+    display: flex;
+    gap: 5px;
+}
+.list-container > section {
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
+}
 .todos {
     display: flex;
     flex-direction: column;
