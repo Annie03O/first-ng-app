@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;    
+    border: 1px solid #ddd; 
+    border-radius: 20px;
+    box-shadow: 1px 3px 3px #ddd;
+}
+.todos-wrapper {
+    width: 90%;
+}
+.todos-wrapper form {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 8px;
+}
+.todos-wrapper label {
+    font-size: 1.5rem;
+}
+.todos-wrapper form input {
+    padding: 8px 4px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 1px #ddd;
+}
+.todos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 10px;
+    border-top: 1px solid #ddd;
+    gap: 10px;
+    &__item {
+        gap: 8px;
+    }
+}
+app-todo-item {
+    width: 100%;
+}
