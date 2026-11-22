@@ -4,29 +4,51 @@
     <p>Loading...</p>
 }
 <section class="wrapper">
+    <form>
+        <label>Filter Todos</label>
+        <input name="searchTerm" [(ngModel)]="searchTerm" type="text" placeholder="Search todos...">
+    </form>
+ 
     <section class="todos-wrapper">
-       <form>
-           <label>Filter Todos</label>
-           <input name="searchTerm" [(ngModel)]="searchTerm" type="text" placeholder="Search todos...">
-       </form>
+        <form>
+             <label>Add a new Todo</label>
+             <section class="input-container">
+                 <input [(ngModel)]="newTodo" (keyup.enter)="addNewTodo()" name="newTask" type="text" placeholder="Add a new task">
+                 <button (click)="addNewTodo()">Add</button>
+             </section>
+        </form>
 
-       <section class="list-container">
-          <section>
-               <label for="">Not Done</label>
-               <ul class="todos">
-                  @for (todo of todoItems() | filterTodos : searchTerm() | filterCompletedTodos : false; track todo.id) {
-                   <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo"/>
+        <section class="list-container">
+           <section>
+             <section>
+                  <label for="">Not Done</label>
+                  @let notDone = todoItems() | filterTodos : searchTerm() | filterCompletedTodos : false;
+                  <ul class="todos">
+                     @for (todo of notDone | slice : 0 : (showAllNotDone() ? notDone.length : pageSize); track todo.id) {
+                      <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo"/>
+                     }
+                  </ul>
+                  @if (notDone.length > pageSize) {
+                     <button class="view-btn" type="button" (click)="showAllNotDone.set(!showAllNotDone())">
+                        {{ showAllNotDone() ? 'View less' : 'View more (' + (notDone.length - pageSize) + ')' }}
+                     </button>
                   }
-               </ul>
-          </section>
-          <section>
-               <label>Done</label>
-               <ul class="finished-todos">
-                 @for (todo of todoItems() | filterCompletedTodos : completedTodo(); track todo.id) {
-                    <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo"/>
-                 }
-               </ul>
-          </section>
+             </section>
+                <section>
+                     <label>Done</label>
+                     @let done = todoItems() | filterCompletedTodos : completedTodo();
+                     <ul class="todos">
+                       @for (todo of done | slice : 0 : (showAllDone() ? done.length : pageSize); track todo.id) {
+                          <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo"/>
+                       }
+                     </ul>
+                     @if (done.length > pageSize) {
+                        <button class="view-btn" type="button" (click)="showAllDone.set(!showAllDone())">
+                           {{ showAllDone() ? 'View less' : 'View more (' + (done.length - pageSize) + ')' }}
+                        </button>
+                     }
+                </section>
+         </section>
         </section>
     </section>
 </section>
