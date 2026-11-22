@@ -1,50 +1,124 @@
-.wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;    
+button, label, app-todo-item {
+    cursor: pointer;
+}
+.wrapper {    
     border: 1px solid #ddd; 
     border-radius: 20px;
     box-shadow: 1px 3px 3px #ddd;
 }
-.todos-wrapper {
+.todos-wrapper {    
     width: 90%;
 }
-.todos-wrapper form {
-    display: flex;
-    flex-direction: column;
+.wrapper > form {
+    width: 95%;
     padding: 8px 8px;
+    border-bottom: 1px solid #ddd;
 }
-.todos-wrapper label {
+.wrapper label {
     font-size: 1.5rem;
 }
-.todos-wrapper form input {
+.wrapper form input {
     padding: 8px 4px;
     width: 300px;
     border-radius: 5px;
     border: 1px solid #ddd;
     box-shadow: 1px 1px 1px #ddd;
 }
-.list-container {
-    display: flex;
+section.input-container {
     gap: 5px;
 }
-.list-container > section {
-    border-left: 1px solid #ddd;
-    padding-left: 10px;
+section.input-container button {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: black;
+    color: white;
+    width: 4rem;
+    border-radius: 10px;
 }
-.todos {
-    display: flex;
-    flex-direction: column;
+.list-container {
+    max-width: 90%;
+    padding: 10px 10px;
     justify-content: center;
-    align-items: center;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd ;
+}
+.list-container > section {
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 300px;
+    justify-content: center;
+}
+.list-container > section > button {
+    background: #000;
+}
+// Korten har fast storlek och påverkas inte av containerns storlek
+$card-width: 400px;
+
+.view-btn {
+    background-color: transparent; 
+    border: transparent;
+    text-decoration: underline;
+    color: #1e00ff;
+}
+.view-btn:hover {
+    color: #59a9ff;
+}
+.list-container > section > section {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 5px 5px;
+    box-shadow: 1px 1px 1px #ddd;
+    flex: 0 0 auto;          // växer eller krymper inte med containern
+    width: $card-width;
+    max-width: 100%;         // men får inte gå utanför skärmen på små skärmar
+    align-self: flex-start;  // höjden följer innehållet, sträcks inte efter grannkortet
+ }
+// Listan håller alltid höjden för så här många rader, även när den har färre todos
+$min-visible-rows: 10;
+$row-height: 2.5rem;
+$row-gap: 10px;
+
+.todos {
+    justify-content: flex-start;
+    width: 93%;
+    min-height: calc(#{$min-visible-rows} * #{$row-height} + #{$min-visible-rows - 1} * #{$row-gap});
+    margin: 0;
     border-bottom: 1px solid #ddd;
     padding: 10px 10px;
     border-top: 1px solid #ddd;
-    gap: 10px;
     &__item {
         gap: 8px;
     }
 }
 app-todo-item {
     width: 100%;
+    min-height: $row-height;
+}
+.list-container > section, 
+.todos,
+.todos-wrapper,
+.wrapper {
+    gap: 10px;
+}
+.wrapper,
+.wrapper > form,
+.todos-wrapper, 
+section.input-container,
+.list-container,
+.list-container > section,
+.list-container > section > section,
+.todos
+{ 
+    display: flex;
+}
+.wrapper,
+.wrapper > form, 
+.todos-wrapper,
+.list-container > section > section,
+.todos {
+    flex-direction: column;
+}
+.wrapper,
+.list-container > section > section,
+.todos {
+    align-items: center;
 }

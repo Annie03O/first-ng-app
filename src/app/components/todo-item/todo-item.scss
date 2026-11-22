@@ -1,8 +1,28 @@
 .todos__item {
     display: flex;
     align-items: center;
-    padding: 5px 5px;
+    padding: 5px 5px 5px 12px;
+    gap: 5px;
     font-size: 1.2rem;
     list-style-type: none;
     border-bottom: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover {
+        background-color: #eef2ff;
+        box-shadow: inset 4px 0 0 #1e00ff; // färgad kant till vänster
+    }
+
+    // Checkboxen har cursor: default från webbläsaren, så den måste sättas explicit
+    input,
+    label {
+        cursor: pointer;
+    }
+
+    // Labeln fyller resten av raden, så ett klick var som helst på raden bockar i todon
+    label {
+        flex: 1;
+    }
 }
