@@ -9,8 +9,14 @@ button, label, app-todo-item {
 .todos-wrapper {    
     width: 90%;
 }
+<<<<<<< HEAD
 .wrapper > form {
     width: 95%;
+=======
+.todos-wrapper form {
+    display: flex;
+        flex-direction: column;
+>>>>>>> 02ee45a2e212b046680efe10a65b51f3573af345
     padding: 8px 8px;
     border-bottom: 1px solid #ddd;
 }
